@@ -1,9 +1,9 @@
-import React, {useState, FormEvent, ChangeEvent} from "react";
+import React, {useState} from "react";
 import styles from "./LoginForm.module.css";
 import Button from "./Button";
 import Input from "./Input";
 import {useNavigate} from "react-router-dom";
-import {useAuth} from "../../hook/useContext";
+import {useAuth} from "../../shared/useContext";
 import {fetchUsers, setDataStorage} from "../../shared/FetchApi";
 
 const LoginForm: React.FC = () => {
@@ -13,7 +13,7 @@ const LoginForm: React.FC = () => {
     const navigate = useNavigate();
     const {toggleLogin} = useAuth();
 
-    const handleLogin = async (event: FormEvent<HTMLFormElement>) => {
+    const handleLogin = async (event) => {
         event.preventDefault();
 
         const fetchedUsers: any[] = await fetchUsers();
@@ -46,7 +46,7 @@ const LoginForm: React.FC = () => {
                         label="Username"
                         placeholder="username"
                         value={username}
-                        onChange={(event: ChangeEvent<HTMLInputElement>) => setUsername(event.target.value)}
+                        onChange={(event) => setUsername(event.target.value)}
                     />
                     <Input
                         type="password"
@@ -55,7 +55,7 @@ const LoginForm: React.FC = () => {
                         label="Password"
                         placeholder="••••••••"
                         value={password}
-                        onChange={(event: ChangeEvent<HTMLInputElement>) => setPassword(event.target.value)}
+                        onChange={(event) => setPassword(event.target.value)}
                     />
                     <Button className={styles['login-btn']} type="submit" value="Submit"/>
                 </form>

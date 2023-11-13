@@ -1,5 +1,5 @@
 import {Navigate, Outlet} from "react-router-dom";
-import {useAuth} from "../hook/useContext";
+import {useAuth} from "../shared/useContext";
 import {FC} from "react";
 
 const PrivateRoutes: FC = () => {

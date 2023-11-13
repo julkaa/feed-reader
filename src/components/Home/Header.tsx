@@ -1,7 +1,7 @@
 import React from "react";
 import Button from "../LoginForm/Button";
 import styles from "./Header.module.css";
-import {useAuth} from "../../hook/useContext";
+import {useAuth} from "../../shared/useContext";
 import {useLocation, useNavigate} from "react-router-dom";
 
 const Header: React.FC = () => {

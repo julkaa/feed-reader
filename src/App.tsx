@@ -4,7 +4,7 @@ import LoginForm from "./components/LoginForm/LoginForm";
 import {BrowserRouter as Router, Navigate, Route, Routes} from "react-router-dom";
 import PrivateRoutes from "./Router/PrivateRoutes";
 import HomePage from "./components/Home/HomePage";
-import {AuthProvider} from "./hook/useContext";
+import {AuthProvider} from "./shared/useContext";
 
 const App: React.FC = () => {
 
