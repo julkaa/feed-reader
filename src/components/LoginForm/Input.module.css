@@ -1,0 +1,17 @@
+.label {
+    display: block;
+    margin-bottom: 8px;
+    font-size: 14px;
+    color: rgb(128, 128, 128);
+    font-family: "Poppins", sans-serif;
+}
+
+.input[type="text"],
+.input[type="password"] {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid lightgray;
+    border-radius: 5px;
+    box-sizing: border-box;
+    margin-bottom: 15px;
+}

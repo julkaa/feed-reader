@@ -1,0 +1,47 @@
+.h1 {
+    text-align: center;
+    margin: 0;
+    padding: 20px 0;
+    font-size: 28px;
+    font-weight: bold;
+    color: white;
+}
+
+.topbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #333;
+    color: white;
+    padding: 10px;
+}
+
+.topbar-text {
+    font-size: 18px;
+}
+
+.topbar-button {
+    margin-left: 10px;
+    padding: 8px 16px;
+    border: none;
+    background-color: #55a;
+    color: white;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.topbar-button:hover {
+    background-color: #4444be;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+}
+
+.feed-button {
+    padding: 8px 16px;
+    margin-right: 10px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
