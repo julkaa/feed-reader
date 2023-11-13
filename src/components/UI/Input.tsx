@@ -4,7 +4,6 @@ import styles from "./Input.module.css"
 interface IInputProps {
     type: string;
     id: string;
-    name: string;
     label: string;
     placeholder: string;
     autofocus?: boolean;
@@ -13,7 +12,7 @@ interface IInputProps {
     className?: string;
 }
 
-const Input: React.FC<IInputProps> = ({type, id, name, label, placeholder, autofocus, value, onChange, className}) => {
+const Input: React.FC<IInputProps> = ({type, id, label, placeholder, autofocus, value, onChange, className}) => {
     return (
         <>
             <label className={styles.label}>{label}</label>
@@ -21,7 +20,6 @@ const Input: React.FC<IInputProps> = ({type, id, name, label, placeholder, autof
                 autoFocus={autofocus}
                 type={type}
                 id={id}
-                name={name}
                 placeholder={placeholder}
                 value={value}
                 onChange={onChange}

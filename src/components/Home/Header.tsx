@@ -1,8 +1,8 @@
 import React from "react";
-import Button from "../LoginForm/Button";
 import styles from "./Header.module.css";
 import {useAuth} from "../../shared/useContext";
 import {useLocation, useNavigate} from "react-router-dom";
+import UnderlineButton from "../UI/UnderlineButton";
 
 const Header: React.FC = () => {
     const {toggleLogin} = useAuth();
@@ -19,11 +19,15 @@ const Header: React.FC = () => {
 
     return (
         <div className={styles.topbar}>
-            <div className={styles['topbar-text']}>Welcome To The Feed Reader!</div>
+            <div className={styles['topbar-text']}>Welcome To The Feed
+                Reader,<span className={styles['topbar-username']}> {localStorage.getItem('userName')}!</span></div>
+
             <div>
                 {location.pathname !== '/home' &&
-                    <Button value="Back" onClick={handleGoHome} className={styles['topbar-button']} type='button'/>}
-                <Button value="Logout" onClick={handleLogout} className={styles['topbar-button']} type='button'/>
+                    <UnderlineButton value="Back" onClick={handleGoHome} className={styles['topbar-button']}
+                                     type='button'/>}
+                <UnderlineButton value="Logout" onClick={handleLogout} className={styles['topbar-button']}
+                                 type='button'/>
             </div>
         </div>
     );

@@ -1,10 +1,12 @@
 import React, {useState} from "react";
 import styles from "./LoginForm.module.css";
-import Button from "./Button";
-import Input from "./Input";
+import Button from "../UI/Button";
+import Input from "../UI/Input";
 import {useNavigate} from "react-router-dom";
 import {useAuth} from "../../shared/useContext";
 import {fetchUsers, setDataStorage} from "../../shared/FetchApi";
+import Loader from "../UI/Loader";
+import FormBlock from "../UI/FormBlock";
 
 const LoginForm: React.FC = () => {
     const [username, setUsername] = useState<string>('Kamren');
@@ -22,7 +24,10 @@ const LoginForm: React.FC = () => {
         if (foundUser) {
             setIsLoading(true);
             localStorage.setItem('userID', String(foundUser.id));
-            await setDataStorage();
+            localStorage.setItem('userName', String(foundUser.name));
+            if (!JSON.parse(localStorage.getItem('feeds'))) {
+                await setDataStorage();
+            }
             toggleLogin();
             const timer = setTimeout(() => {
                 setIsLoading(false);
@@ -35,32 +40,15 @@ const LoginForm: React.FC = () => {
     };
 
     return (
-        <div className={styles['login-form']}>
-            {isLoading ? <h1>Loading...</h1> : <h1>Login</h1>}
-            {!isLoading && (
-                <form onSubmit={handleLogin}>
-                    <Input
-                        type="text"
-                        id="username"
-                        name="username"
-                        label="Username"
-                        placeholder="username"
-                        value={username}
-                        onChange={(event) => setUsername(event.target.value)}
-                    />
-                    <Input
-                        type="password"
-                        id="password"
-                        name="password"
-                        label="Password"
-                        placeholder="••••••••"
-                        value={password}
-                        onChange={(event) => setPassword(event.target.value)}
-                    />
-                    <Button className={styles['login-btn']} type="submit" value="Submit"/>
-                </form>
-            )}
-        </div>
+        <>
+            {isLoading ? <Loader/> :
+                <FormBlock onSubmit={handleLogin}
+                           onChangeFirst={{name: 'username', label: 'Username', value: username, onClick: (event) => setUsername(event.target.value)}}
+                           onChangeSecond={{name: 'password', label: 'Password', value: password, onClick: (event) => setPassword(event.target.value)}}
+                           title='Login' className={styles['login-form']}/>
+
+            }
+        </>
     );
 };
 

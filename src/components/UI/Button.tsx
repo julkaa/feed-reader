@@ -13,8 +13,7 @@ const Button: React.FC<IButtonProps> = ({type = "button", onClick, value, classN
         <button
             className={`${styles.button} ${className}`}
             type={type}
-            onClick={onClick}
-        >
+            onClick={onClick}>
             {value}
         </button>
     );

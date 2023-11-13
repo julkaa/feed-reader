@@ -85,19 +85,23 @@ async function addNewFeed(newFeedUrl: string): Promise<any> {
 }
 
 async function setDataStorage(): Promise<void> {
-    // if (!localStorage.getItem('feeds') || !localStorage.getItem('posts')) {
-    Promise.all(DEFAULT_FEEDS_URL.map((url, index) => fetchFeeds(url, index)))
-        .then((res) => {
-            localStorage.setItem('feeds', JSON.stringify(res));
-        })
-        .catch((error) => console.error('Error fetching feeds:', error));
+    const result = [];
+    try {
+        const res = await Promise.all(DEFAULT_FEEDS_URL.map((url, index) => fetchFeeds(url, index)));
 
-    fetchUserPost().then((formattedData) => {
+        result.push(...res);
+
+        const formattedData = await fetchUserPost();
+
         if (formattedData) {
-            localStorage.setItem('posts', JSON.stringify(formattedData));
+            result.push(...formattedData);
+
+            localStorage.setItem('feeds', JSON.stringify(result));
         }
-    });
-    // }
+    } catch (error) {
+        console.error('Error fetching or formatting data:', error);
+    }
 }
+
 
 export {fetchUsers, fetchFeeds, fetchUserPost, addNewFeed, setDataStorage};

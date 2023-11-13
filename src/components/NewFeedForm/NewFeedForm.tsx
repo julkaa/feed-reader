@@ -1,7 +1,8 @@
 import React, {useState, ChangeEvent, FormEvent} from "react";
 import styles from "./NewFeedForm.module.css";
-import Button from "../LoginForm/Button";
-import Input from "../LoginForm/Input";
+import Button from "../UI/Button";
+import Input from "../UI/Input";
+import FormBlock from "../UI/FormBlock";
 
 interface NewFeedFormProps {
     onAddFeed: (newFeed: string) => void;
@@ -30,30 +31,10 @@ const NewFeedForm: React.FC<NewFeedFormProps> = ({onAddFeed}) => {
     };
 
     return (
-        <div className={styles['new-feed-form']}>
-            <p>Add New Feed Here</p>
-            <form onSubmit={handleAddingNewFeed}>
-                <Input
-                    type="text"
-                    id="title"
-                    name="title"
-                    label="Title Of Feed"
-                    placeholder="url"
-                    value={newFeed}
-                    onChange={handleTitleChange}
-                />
-                <Input
-                    type="text"
-                    id="url"
-                    name="url"
-                    label="Url Of The Feed"
-                    placeholder="url"
-                    value={newFeed}
-                    onChange={handleUrlChange}
-                />
-                <Button className={styles['new-feed-btn']} type="submit" value="Submit"/>
-            </form>
-        </div>
+        <FormBlock onSubmit={handleAddingNewFeed}
+                   onChangeFirst={{name: 'title', label: 'Title Of Feed', value: 'Al Jazeera – Breaking News, World News and Video from Al Jazeera', onClick: handleTitleChange}}
+                   onChangeSecond={{name: 'url', label: 'Url Of The Feed', value: newFeed, onClick: handleUrlChange}}
+                   title='Add New Feed Here' className={styles['new-feed-form']}/>
     );
 };
 
