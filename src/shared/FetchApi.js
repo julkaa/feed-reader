@@ -1,6 +1,6 @@
 import {DEFAULT_FEEDS_URL, PROXY_SERVER_URL} from "./DefaultUrls";
 
-async function fetchUserPost(id) {
+async function fetchUserPost() {
     const userId = localStorage.getItem('userID');
     const response = await fetch(`https://jsonplaceholder.typicode.com/posts?userId=${userId}`, {
         method: 'GET',
@@ -55,9 +55,10 @@ async function addNewFeed(newFeedUrl) {
     } catch (error) {
         console.error('Error adding the feed:', error);
     }
-};
+}
 
 async function setDataStorage() {
+    // if (!localStorage.getItem('feeds') || !localStorage.getItem('posts')) {
     Promise.all(DEFAULT_FEEDS_URL.map((url, index) => fetchFeeds(url, index)))
         .then((res) => {
             localStorage.setItem('feeds', JSON.stringify(res));
@@ -67,6 +68,7 @@ async function setDataStorage() {
     fetchUserPost().then(formattedData => {
         localStorage.setItem('posts', JSON.stringify(formattedData));
     });
+    // }
 }
 
 export {fetchFeeds, fetchUserPost, addNewFeed, setDataStorage}

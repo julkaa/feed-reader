@@ -1,8 +1,7 @@
-import React, {useEffect} from "react";
+import React, {useState} from "react";
 import styles from "./LoginForm.module.css";
 import Button from "./Button";
 import Input from "./Input";
-import {useState} from "react";
 import {useNavigate} from "react-router-dom";
 import {useAuth} from "../../hook/useContext";
 import {setDataStorage} from "../../shared/FetchApi";
@@ -10,8 +9,9 @@ import {setDataStorage} from "../../shared/FetchApi";
 const LoginForm = () => {
     const [username, setUsername] = useState('Kamren');
     const [password, setPassword] = useState('password');
+    const [isLoading, setIsLoading] = useState(false);
     const navigate = useNavigate();
-    const {isLoggedIn, toggleLogin} = useAuth();
+    const {toggleLogin} = useAuth();
 
     const fetchUsers = async () => {
         try {
@@ -23,42 +23,38 @@ const LoginForm = () => {
             });
 
             if (response.ok) {
-                const userData = await response.json();
-                return userData;
+                return await response.json();
             }
         } catch (error) {
             console.error('Error during login:', error);
         }
     };
 
-    useEffect(() => {
-        console.log(isLoggedIn);
-    }, [isLoggedIn]);
-
-
     const handleLogin = async (event) => {
-        console.log('logging');
         event.preventDefault();
 
         const fetchedUsers = await fetchUsers();
         const foundUser = fetchedUsers.find(user => user.username === username);
 
         if (foundUser) {
+            setIsLoading(true);
             localStorage.setItem('userID', String(foundUser.id));
+            await setDataStorage()
             toggleLogin();
-            alert('Logged in!');
-            setDataStorage()
-            navigate('/home');
+            const timer = setTimeout(() => {
+                setIsLoading(false);
+                navigate('/home');
+            }, 3000);
+            return () => clearTimeout(timer);
         } else {
             alert('Invalid credentials. Please try again.');
         }
     };
 
-
     return (
         <div className={styles['login-form']}>
-            <h1>Login</h1>
-            <form onSubmit={handleLogin}>
+            {isLoading ? <h1>Loading...</h1> : <h1>Login</h1>}
+            {!isLoading && <form onSubmit={handleLogin}>
                 <Input
                     type="text"
                     id="username"
@@ -79,6 +75,7 @@ const LoginForm = () => {
                 />
                 <Button className={styles['login-btn']} type="submit" value="Submit"/>
             </form>
+            }
         </div>
     )
 }

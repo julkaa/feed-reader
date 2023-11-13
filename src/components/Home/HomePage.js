@@ -14,7 +14,6 @@ const HomePage = () => {
     const id = useParams();
     const navigate = useNavigate();
 
-
     useEffect(() => {
         localStorage.setItem('feeds', JSON.stringify(feedItems));
         localStorage.setItem('posts', JSON.stringify(postItems));
@@ -52,9 +51,9 @@ const HomePage = () => {
     return (
         <>
             <Header/>
-            {id.id === undefined ? (<>{feedItems.length > 0 ? (
+            {id.id === undefined ? (<>{feedItems?.length > 0 || postItems?.length > 0 ? (
                 <>
-                    <p className={styles.title}>Feeds</p>
+                    {feedItems?.length > 0 && <p className={styles.title}>Feeds</p>}
                     {feedItems.map((item) => (
                         <Feed
                             key={item.id}
@@ -64,7 +63,7 @@ const HomePage = () => {
                             onViewFeed={viewFeed}
                         />
                     ))}
-                    <p className={styles.title}>Posts</p>
+                    {postItems?.length > 0 && <p className={styles.title}>Posts</p>}
                     {postItems.map((item) => (
                         <Feed
                             key={item.id}
@@ -76,7 +75,7 @@ const HomePage = () => {
                     ))}
                 </>
             ) : (
-                feedItems.length === 0 && postItems.length === 0 && (
+                feedItems?.length === 0 && postItems?.length === 0 && (
                     <p>There's No Feed Data...</p>
                 )
             )}</>) : (<>
@@ -91,9 +90,7 @@ const HomePage = () => {
             </>)}
 
 
-            {feedItems.length > 0 && (
-                <NewFeedForm onAddFeed={addFeed}/>
-            )}
+            <NewFeedForm onAddFeed={addFeed}/>
         </>
 
     );
