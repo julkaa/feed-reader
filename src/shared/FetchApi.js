@@ -1,5 +1,22 @@
 import {DEFAULT_FEEDS_URL, PROXY_SERVER_URL} from "./DefaultUrls";
 
+async function fetchUsers() {
+    try {
+        const response = await fetch('https://jsonplaceholder.typicode.com/users', {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        });
+
+        if (response.ok) {
+            return await response.json();
+        }
+    } catch (error) {
+        console.error('Error during login:', error);
+    }
+}
+
 async function fetchUserPost() {
     const userId = localStorage.getItem('userID');
     const response = await fetch(`https://jsonplaceholder.typicode.com/posts?userId=${userId}`, {
@@ -71,4 +88,4 @@ async function setDataStorage() {
     // }
 }
 
-export {fetchFeeds, fetchUserPost, addNewFeed, setDataStorage}
+export {fetchUsers, fetchFeeds, fetchUserPost, addNewFeed, setDataStorage}

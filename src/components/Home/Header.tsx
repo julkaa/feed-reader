@@ -1,19 +1,22 @@
 import React from "react";
 import Button from "../LoginForm/Button";
-import styles from "./Header.module.css"
+import styles from "./Header.module.css";
 import {useAuth} from "../../hook/useContext";
 import {useLocation, useNavigate} from "react-router-dom";
 
-const Header = () => {
+const Header: React.FC = () => {
     const {toggleLogin} = useAuth();
     const navigate = useNavigate();
     const location = useLocation();
+
     const handleLogout = (): void => {
         toggleLogin();
     };
+
     const handleGoHome = (): void => {
         navigate('/home');
     };
+
     return (
         <div className={styles.topbar}>
             <div className={styles['topbar-text']}>Welcome To The Feed Reader!</div>
@@ -24,6 +27,6 @@ const Header = () => {
             </div>
         </div>
     );
-}
+};
 
 export default Header;
