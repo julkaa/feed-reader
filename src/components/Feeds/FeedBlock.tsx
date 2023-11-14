@@ -21,7 +21,7 @@ const FeedBlock: React.FC<IFeedBlockProps> = ({feed, onDeleteFeed, onViewFeed}) 
     };
 
     const viewFeed = () => {
-        onViewFeed(feed.id); // feed.id is already a string
+        onViewFeed(feed.id);
     };
 
     return (

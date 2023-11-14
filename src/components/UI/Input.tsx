@@ -7,7 +7,7 @@ interface IInputProps {
     label: string;
     placeholder: string;
     autofocus?: boolean;
-    value: string; // Change to defaultValue if needed
+    value: string;
     onChange: (e: ChangeEvent<HTMLInputElement>) => void;
     className?: string;
 }

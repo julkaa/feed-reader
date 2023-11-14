@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import styles from "./LoginForm.module.css";
 import {useNavigate} from "react-router-dom";
 import {useAuth} from "../../shared/useContext";
@@ -43,8 +43,18 @@ const LoginForm: React.FC = () => {
         <>
             {isLoading ? <Loader/> :
                 <FormBlock onSubmit={handleLogin}
-                           onChangeFirst={{name: 'username', label: 'Username', value: username, onClick: (event) => setUsername(event.target.value)}}
-                           onChangeSecond={{name: 'password', label: 'Password', value: password, onClick: (event) => setPassword(event.target.value)}}
+                           onChangeFirst={{
+                               name: 'username',
+                               label: 'Username',
+                               value: username,
+                               onClick: (event) => setUsername(event.target.value)
+                           }}
+                           onChangeSecond={{
+                               name: 'password',
+                               label: 'Password',
+                               value: password,
+                               onClick: (event) => setPassword(event.target.value)
+                           }}
                            title='Login' className={styles['login-form']}/>
 
             }

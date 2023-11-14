@@ -12,5 +12,10 @@
 .link {
     color: black;
     font-size: 12px;
+    text-decoration: none;
+}
+
+.link:hover {
+    text-decoration: underline;
 }
 

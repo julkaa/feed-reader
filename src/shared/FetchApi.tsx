@@ -57,7 +57,7 @@ async function fetchFeeds(url: string, index: number): Promise<{ id: number; dat
             headers: {
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify({url: url}), // URL to be fetched
+            body: JSON.stringify({url: url}),
         });
         const data = await response.json();
         return {id: index, data: data};
@@ -73,7 +73,7 @@ async function addNewFeed(newFeedUrl: string): Promise<any> {
             headers: {
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify({url: newFeedUrl}), // URL to be added
+            body: JSON.stringify({url: newFeedUrl}),
         });
 
         if (response.ok) {
