@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react";
+import React, {useState} from "react";
 import styles from "./LoginForm.module.css";
 import {useNavigate} from "react-router-dom";
 import {useAuth} from "../../shared/useContext";
