@@ -13,7 +13,7 @@ In the proxy-server directory, you can run:
 ### `node server.js`
 
 Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.\
+Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
 Runs the proxy-server.\
 Open [http://localhost:4000](http://localhost:4000).
