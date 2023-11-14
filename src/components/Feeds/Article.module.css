@@ -1,0 +1,34 @@
+.article-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    background-image: url('../../assets/globe.jpg');
+    background-size: cover;
+    background-position: center;
+    color: white;
+}
+
+.article {
+    text-align: center;
+    padding: 0 5px;
+}
+
+.article-title {
+    font-size: 2em;
+    margin: 20px 0;
+}
+
+.article-description {
+    font-size: 1.2em;
+    color: #6c6464;
+}
+
+.link-description {
+    width: 40%;
+    border: 1px solid #ccc;
+    padding: 20px;
+    margin: auto;
+}
+
+

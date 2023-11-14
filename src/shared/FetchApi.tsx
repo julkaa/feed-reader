@@ -1,6 +1,6 @@
 import {DEFAULT_FEEDS_URL, PROXY_SERVER_URL} from "./DefaultUrls";
 
-interface Post {
+interface IPost {
     id: number;
     data: {
         title: string;
@@ -26,7 +26,7 @@ async function fetchUsers(): Promise<any> {
     }
 }
 
-async function fetchUserPost(): Promise<Post[] | undefined> {
+async function fetchUserPost(): Promise<IPost[] | undefined> {
     const userId = localStorage.getItem('userID');
     if (userId) {
         const response = await fetch(`https://jsonplaceholder.typicode.com/posts?userId=${userId}`, {
@@ -104,4 +104,4 @@ async function setDataStorage(): Promise<void> {
 }
 
 
-export {fetchUsers, fetchFeeds, fetchUserPost, addNewFeed, setDataStorage};
+export {fetchUsers, addNewFeed, setDataStorage};

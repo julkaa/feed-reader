@@ -1,7 +1,5 @@
 import React, {useState} from "react";
 import styles from "./LoginForm.module.css";
-import Button from "../UI/Button";
-import Input from "../UI/Input";
 import {useNavigate} from "react-router-dom";
 import {useAuth} from "../../shared/useContext";
 import {fetchUsers, setDataStorage} from "../../shared/FetchApi";
@@ -25,9 +23,11 @@ const LoginForm: React.FC = () => {
             setIsLoading(true);
             localStorage.setItem('userID', String(foundUser.id));
             localStorage.setItem('userName', String(foundUser.name));
+
             if (!JSON.parse(localStorage.getItem('feeds'))) {
                 await setDataStorage();
             }
+
             toggleLogin();
             const timer = setTimeout(() => {
                 setIsLoading(false);

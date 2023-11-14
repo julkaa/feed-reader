@@ -1,0 +1,9 @@
+.loader {
+    background-color: #100f0f;
+    text-align: center;
+    color: white;
+    padding: 20px;
+    width: 100%;
+    position: absolute;
+    top: 35%;
+}

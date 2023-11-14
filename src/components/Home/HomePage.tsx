@@ -1,14 +1,13 @@
 import React, {useEffect, useState} from "react";
 import {useParams, useNavigate} from "react-router-dom";
 import Header from "./Header";
-import Feed from "../Feeds/LinksList";
 import NewFeedForm from "../NewFeedForm/NewFeedForm";
 import {addNewFeed, setDataStorage} from "../../shared/FetchApi";
 import styles from "./HomePage.module.css";
 import FeedBlock from "../Feeds/FeedBlock";
 import Article from "../Feeds/Article";
 import Loader from "../UI/Loader";
-import UnderlineButton from "../UI/UnderlineButton";
+import UnderlineButton from "../UI/Button/UnderlineButton";
 
 interface IFeedItem {
     id: number;
@@ -30,11 +29,11 @@ const HomePage: React.FC = () => {
         return <Loader/>;
     }
 
-    const viewFeed = (feedId: number, typeFeed: string) => {
+    const viewFeed = (feedId: number) => {
         navigate(`/feed/${feedId}`);
     };
 
-    const deleteFeed = (idToDelete: number, typeFeed: string) => {
+    const deleteFeed = (idToDelete: number) => {
         setFeedItems(prevFeedItems => prevFeedItems.filter(item => item.id !== idToDelete));
     };
 
@@ -58,6 +57,7 @@ const HomePage: React.FC = () => {
         });
     }
 
+
     return (
         <>
             <Header/>
@@ -65,12 +65,10 @@ const HomePage: React.FC = () => {
                              type='button' className={styles['reset-btn']}/>
             {id === undefined ? <div className={styles.wrapper}>
                     {feedItems.map((item) =>
-                        <><FeedBlock feed={item} onDeleteFeed={deleteFeed} onViewFeed={viewFeed}/>
-                        </>)}
+                        <FeedBlock key={item.id} feed={item} onDeleteFeed={deleteFeed} onViewFeed={viewFeed}/>)}
                     <NewFeedForm onAddFeed={addFeed}/>
                 </div> :
-                <Article feed={feedItems.filter(item => item.id === Number(id))[0]} onDeleteFeed={deleteFeed}
-                         onViewFeed={viewFeed}/>}
+                <Article feed={feedItems.filter(item => item.id === Number(id))[0]}/>}
 
 
             {feedItems.length === 0 && <p>No Feed Data...</p>}

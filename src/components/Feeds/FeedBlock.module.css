@@ -1,0 +1,36 @@
+.feed-wrapper {
+    width: 43%;
+    background-image: url('../../assets/globe.jpg');
+    background-size: cover;
+    background-position: center;
+    border: 1px solid #ccc;
+    padding: 25px;
+    margin-bottom: 10px;
+    text-align: center;
+    color: white;
+}
+
+.feed-title {
+    margin-top: 15px;
+}
+
+.buttons {
+    margin-top: 20px;
+}
+
+.buttons button {
+    margin: 0 5px;
+    padding: 8px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.delete-button {
+    background-color: #e33b2c;
+    color: #fff;
+}
+
+.delete-button:hover {
+    background-color: #81271c;
+}

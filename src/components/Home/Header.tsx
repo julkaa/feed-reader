@@ -2,7 +2,7 @@ import React from "react";
 import styles from "./Header.module.css";
 import {useAuth} from "../../shared/useContext";
 import {useLocation, useNavigate} from "react-router-dom";
-import UnderlineButton from "../UI/UnderlineButton";
+import UnderlineButton from "../UI/Button/UnderlineButton";
 
 const Header: React.FC = () => {
     const {toggleLogin} = useAuth();
